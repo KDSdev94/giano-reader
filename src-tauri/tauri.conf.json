@@ -1,0 +1,48 @@
+{
+  "productName": "Giano Reader",
+  "version": "0.9.4",
+  "identifier": "giano-reader",
+  "build": {
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:1420",
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build:webclient && npm run build"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "Giano Reader",
+        "width": 1200,
+        "height": 800,
+        "minWidth": 800,
+        "minHeight": 600,
+        "resizable": true,
+        "fullscreen": false,
+        "visible": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; connect-src 'self' ipc: http://ipc.localhost http://127.0.0.1:* http://localhost:* https://translate.googleapis.com https://translation.googleapis.com https://*.workers.dev https://openrouter.ai https://github.com https://objects.githubusercontent.com; img-src 'self' data: blob: giano-assets: https://api.qrserver.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' blob:; worker-src blob:"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/256x256.png",
+      "icons/icon.ico"
+    ]
+  },
+  "plugins": {
+    "updater": {
+      "active": true,
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEM4RDRCREE3RDg2MTU2RTMKUldUalZtSFlwNzNVeUxTMFRMV2dZKzQ0cEF3UlZrZHRzekJsOUlNb0xjMno4ai9Va0orckFPUGoK",
+      "endpoint": [
+        "https://github.com/DrLoki/GianoReader/releases/latest/download/latest.json"
+      ]
+    }
+  }
+}

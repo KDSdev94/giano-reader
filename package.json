@@ -1,0 +1,36 @@
+{
+  "name": "giano-reader",
+  "version": "0.9.4",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build:webclient": "npm --prefix ../web-client install && npm --prefix ../web-client run build",
+    "predev": "npm run build:webclient",
+    "dev": "vite",
+    "build": "vite build",
+    "tauri": "tauri",
+    "test": "vitest --run"
+  },
+  "dependencies": {
+    "@tauri-apps/plugin-dialog": "^2.7.1",
+    "@tauri-apps/plugin-fs": "^2.5.1",
+    "@tauri-apps/plugin-process": "^2.3.1",
+    "@tauri-apps/plugin-updater": "^2.10.1",
+    "epubjs": "^0.3.93",
+    "pdfjs-dist": "^6.2.108"
+  },
+  "devDependencies": {
+    "@tauri-apps/api": "^2.11.0",
+    "@tauri-apps/cli": "^2.11.2",
+    "@vitest/ui": "^4.1.5",
+    "fast-check": "^3.23.2",
+    "jsdom": "^24.1.3",
+    "vite": "^6",
+    "vitest": "^4.1.5"
+  },
+  "overrides": {
+    "@xmldom/xmldom": "^0.8.13"
+  }
+}
