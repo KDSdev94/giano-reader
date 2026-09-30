@@ -2481,7 +2481,7 @@ html.rtl .text-panel p.para-highlight {
 
 /* ── TTS Controls Bar ── */
 #tts-controls {
-  display: flex;
+  display: none !important;
   align-items: center;
   gap: 8px;
   padding: 0 16px;
