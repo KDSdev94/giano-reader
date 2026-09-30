@@ -3255,24 +3255,9 @@ async function loadEpub(arrayBuffer, filePath = '') {
     enableTTSControls(true);
     populateTTSVoices();
 
-    // Trova il primo capitolo con contenuto reale (salta copertina/frontmatter).
-    // Prima passa: cerca "chapter/capitolo" nel nome file.
-    let bestIndex = -1;
-    for (let i = 0; i < currentSpineItems.length; i++) {
-      if (/chapter|capitolo|chap/i.test(currentSpineItems[i].href)) {
-        bestIndex = i; break;
-      }
-    }
-    // Seconda passa: primo spine item con più di 500 caratteri di testo.
-    if (bestIndex < 0) {
-      for (let i = 0; i < currentSpineItems.length; i++) {
-        const body = await loadChapterDocument(currentSpineItems[i]);
-        if ((body?.textContent?.trim() || '').length > 500) { bestIndex = i; break; }
-      }
-    }
     setViewMode('text');
     viewToggleBtn.disabled = false;
-    await displayChapter(bestIndex >= 0 ? bestIndex : 0);
+    await displayChapter(0);
 
     // Compute chapter lengths in background for proportional progress bar
     computeChapterLengths();
@@ -5362,6 +5347,15 @@ const originalPanelEl = document.getElementById('original-panel');
 const translationPanelEl = document.getElementById('translation-panel');
 
 if (mobileTabOriginal && mobileTabTranslation && originalPanelEl && translationPanelEl) {
+  // Sync initial state according to active tab
+  if (mobileTabOriginal.classList.contains('active')) {
+    originalPanelEl.classList.remove('mobile-hidden');
+    translationPanelEl.classList.add('mobile-hidden');
+  } else if (mobileTabTranslation.classList.contains('active')) {
+    translationPanelEl.classList.remove('mobile-hidden');
+    originalPanelEl.classList.add('mobile-hidden');
+  }
+
   mobileTabOriginal.addEventListener('click', () => {
     mobileTabOriginal.classList.add('active');
     mobileTabTranslation.classList.remove('active');
